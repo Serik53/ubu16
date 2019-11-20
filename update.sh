@@ -28,30 +28,16 @@ else
 fi
 
 echo "###############################"
-echo "#  Installing Dependencies    #"		
+echo "#  Remov old binaries   #"		
 echo "###############################"
 echo ""
 echo "Running this script on Ubuntu 16.04 LTS "
 
-sudo apt-get -y update
-sudo apt-get -y install git python virtualenv ufw pwgen 
+sudo rm -r pacglobal-cli
+sudo rm -r pacglobald
+sudo rm -r pacglobal-tx
 
 
-echo "###############################"
-echo "#   Setting up the Firewall   #"		
-echo "###############################"
-sudo locale-gen en_US.UTF-8
-sudo apt-get install ufw
-sudo ufw status
-sudo ufw disable
-sudo ufw allow ssh/tcp
-sudo ufw limit ssh/tcp
-sudo ufw allow $pac_port/tcp
-sudo ufw logging on
-sudo ufw --force enable
-sudo ufw status
-
-sudo iptables -A INPUT -p tcp --dport $pac_port -j ACCEPT
 
 echo ""
 echo "###############################"
@@ -92,6 +78,5 @@ fi
 
 
 ./pacglobal-cli getinfo
-
 
 
