@@ -33,11 +33,14 @@ echo "###############################"
 echo ""
 echo "Running this script on Ubuntu 16.04 LTS "
 
+sudo ./pacglobal-cli stop
+
+sleep 5
+
 sudo rm -r pacglobal-cli
 sudo rm -r pacglobald
 sudo rm -r pacglobal-tx
 
-sudo ./pacglobal-cli stop
 
 echo ""
 echo "###############################"
