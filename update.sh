@@ -37,7 +37,7 @@ sudo rm -r pacglobal-cli
 sudo rm -r pacglobald
 sudo rm -r pacglobal-tx
 
-
+sudo ./pacglobal-cli stop
 
 echo ""
 echo "###############################"
