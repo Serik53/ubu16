@@ -42,6 +42,7 @@ sudo rm -r pacglobald
 sudo rm -r pacglobal-tx
 
 
+
 echo ""
 echo "###############################"
 echo "#      Get/Setup binaries     #"		
@@ -71,7 +72,7 @@ echo ""
 cd ~/
 
 ./pacglobald
-sleep 35
+sleep 70
 
 is_pac_running=`ps ax | grep -v grep | grep pacglobald | wc -l`
 if [ $is_pac_running -eq 0 ]; then
@@ -81,5 +82,6 @@ fi
 
 
 ./pacglobal-cli getinfo
+
 
 
