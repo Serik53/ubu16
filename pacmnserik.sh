@@ -84,14 +84,9 @@ wget $binary_url
 if test -e "${tarball_name}"; then
 	echo "Unpacking $PAC Global distribution"
 	tar -xvzf $tarball_name
-	cd PACGlobal-${version}-lin64
 	chmod +x pacglobald
 	chmod +x pacglobal-cli
-	cp $PWD/pacglobald /root/      
-        cp $PWD/pacglobal-cli /root/ 
-        cp $PWD/pacglobal-tx /root/
 	echo "Binaries were saved to: $PWD/$tarball_name"
-	cd ..
 	rm -r $tarball_name
 else
 	echo "There was a problem downloading the binaries, please try running again the script."
