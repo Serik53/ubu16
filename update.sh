@@ -71,7 +71,7 @@ echo ""
 cd ~/
 
 ./pacglobald
-sleep 70
+sleep 35
 
 is_pac_running=`ps ax | grep -v grep | grep pacglobald | wc -l`
 if [ $is_pac_running -eq 0 ]; then
