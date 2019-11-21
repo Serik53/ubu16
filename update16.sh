@@ -4,34 +4,15 @@ set -e
 
 export LC_ALL="en_US.UTF-8"
 
-if [ "$1" == "--testnet" ]; then
-	pac_rpc_port=7111
-	pac_port=7112
-	is_testnet=1
-else
-	pac_rpc_port=7111
-	pac_port=7112
-	is_testnet=0
-fi
+binary_url="https://github.com/PACGlobalOfficial/PAC/releases/download/035d4df02/pacglobal-035d4df02-lin64.tgz"
+file_name="pacglobal-035d4df02-lin64"
+extension=".tgz"
 
-
-arch=`uname -m`
-version="035d4df02"
-old_version="v0.14.0.0"
-base_url="https://github.com/PACGlobalOfficial/PAC/releases/download/${version}"
-if [ "${arch}" == "x86_64" ]; then
-	tarball_name="PACGlobal-${version}-lin64.tar.gz"
-	binary_url="${base_url}/${tarball_name}"
-else
-	echo "PAC Global binary distribution not available for the architecture: ${arch}"
-	exit -1
-fi
-
-echo "###############################"
-echo "#  Remov old binaries   #"		
-echo "###############################"
 echo ""
-echo "Running this script on Ubuntu 16.04 LTS "
+echo "#################################################"
+echo "#  Remov old binaries  #"
+echo "#################################################"
+
 
 sudo ./pacglobal-cli stop
 
@@ -42,25 +23,26 @@ sudo rm -r pacglobald
 sudo rm -r pacglobal-tx
 
 
-
 echo ""
 echo "###############################"
-echo "#      Get/Setup binaries     #"		
+echo "#      Get/Setup binaries     #"
 echo "###############################"
 echo ""
-
-if test -e "${tarball_name}"; then
-	rm -r $tarball_name
-fi
 wget $binary_url
-if test -e "${tarball_name}"; then
-	echo "Unpacking $PAC Global distribution"
-	tar -xvzf $tarball_name
+if test -e "$file_name$extension"; then
+echo "Unpacking PACGlobal distribution"
+	tar -xzvf $file_name$extension
+	rm -r $file_name$extension
+	mv -v $file_name PACGlobal
+	cd PACGlobal
 	chmod +x pacglobald
 	chmod +x pacglobal-cli
-	rm -r $tarball_name
+	cp $PWD/pacglobald /root/      
+    cp $PWD/pacglobal-cli /root/ 
+    cp $PWD/pacglobal-tx /root/
+	echo "Binaries were saved to: /root/PACGlobal"
 else
-	echo "There was a problem downloading the binaries, please try running again the script."
+	echo "There was a problem downloading the binaries, please try running the script again."
 	exit -1
 fi
 
@@ -72,7 +54,7 @@ echo ""
 cd ~/
 
 ./pacglobald
-sleep 70
+sleep 60
 
 is_pac_running=`ps ax | grep -v grep | grep pacglobald | wc -l`
 if [ $is_pac_running -eq 0 ]; then
@@ -82,5 +64,3 @@ fi
 
 
 ./pacglobal-cli getinfo
-
-
