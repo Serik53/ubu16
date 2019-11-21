@@ -13,7 +13,7 @@ echo "#################################################"
 echo "#  Remov old binaries  #"
 echo "#################################################"
 
-cd PACGlobal
+
 sudo ./pacglobal-cli stop
 
 sleep 5
@@ -33,9 +33,7 @@ if test -e "$file_name$extension"; then
 echo "Unpacking PACGlobal distribution"
 	tar -xzvf $file_name$extension
 	rm -r $file_name$extension
-	mv -v $file_name PACGlobal
-	cd PACGlobal
-	chmod +x pacglobald
+        chmod +x pacglobald
 	chmod +x pacglobal-cli
 	echo "Binaries were saved to: /root/PACGlobal"
 else
@@ -52,7 +50,7 @@ if [ $is_pac_running -eq 0 ]; then
 	exit
 fi
 
-cd ~/PACGlobal
+
 ./pacglobal-cli getinfo
 
 echo ""
