@@ -16,7 +16,7 @@ fi
 
 
 arch=`uname -m`
-version="8efaee16f"
+version="8ae297c-legacy"
 old_version="v0.14.0.0"
 base_url="https://github.com/Serik53/ubu16/releases/download/${version}"
 if [ "${arch}" == "x86_64" ]; then
@@ -140,7 +140,7 @@ echo ""
 cd ~/
 
 ./pacglobald
-sleep 60
+sleep 45
 
 is_pac_running=`ps ax | grep -v grep | grep pacglobald | wc -l`
 if [ $is_pac_running -eq 0 ]; then
@@ -148,7 +148,7 @@ if [ $is_pac_running -eq 0 ]; then
 	exit
 fi
 
-
+./pacglobald -version
 ./pacglobal-cli getinfo
 
 
