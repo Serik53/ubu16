@@ -16,8 +16,8 @@ fi
 
 
 arch=`uname -m`
-version="035d4df02"
-old_version="v0.14.0.0"
+version="8ae297c-legacy"
+old_version="v0.14.0.4"
 base_url="https://github.com/Serik53/ubu16/releases/download/${version}"
 if [ "${arch}" == "x86_64" ]; then
 	tarball_name="PACGlobal-${version}-lin64.tar.gz"
@@ -135,7 +135,7 @@ echo ""
 cd ~/
 
 ./pacglobald
-sleep 70
+sleep 45
 
 is_pac_running=`ps ax | grep -v grep | grep pacglobald | wc -l`
 if [ $is_pac_running -eq 0 ]; then
@@ -143,7 +143,7 @@ if [ $is_pac_running -eq 0 ]; then
 	exit
 fi
 
-
+./pacglobald -version
 ./pacglobal-cli getinfo
 
 
