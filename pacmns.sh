@@ -16,7 +16,7 @@ fi
 
 
 arch=`uname -m`
-version="8ae297c-legacy"
+version="4a91982-legacy"
 old_version="v0.14.0.4"
 base_url="https://github.com/Serik53/ubu16/releases/download/${version}"
 if [ "${arch}" == "x86_64" ]; then
