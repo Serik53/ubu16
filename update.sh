@@ -80,7 +80,7 @@ if [ $is_pac_running -eq 0 ]; then
 	exit
 fi
 
-
+./pacglobald -version
 ./pacglobal-cli getinfo
 
 
